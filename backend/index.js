@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
+import connectDB from "./db/connectDB.js";
 
 // load env variables from .env file
 dotenv.config();
@@ -20,5 +21,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 
 app.listen(port, () => {
+  // connect to database
+  connectDB();
   console.log(`Server is running on port ${port}`);
 });
