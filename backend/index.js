@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
+import messageRoutes from "./routes/messageRoutes.js";
 import connectDB from "./db/connectDB.js";
 
 // load env variables from .env file
@@ -19,6 +20,9 @@ app.get("/", (req, res) => {
 
 // add auth routes
 app.use("/api/auth", authRoutes);
+
+// add message routes
+app.use("/api/messages", messageRoutes);
 
 app.listen(port, () => {
   // connect to database
