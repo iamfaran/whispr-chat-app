@@ -1,5 +1,5 @@
 import express from "express";
-import { sendMessage } from "../controllers/messageController.js";
+import { sendMessage, getMessages } from "../controllers/messageController.js";
 import protectRoute from "../middleware/protectRoute.js";
 
 const router = express.Router();
@@ -9,5 +9,9 @@ const router = express.Router();
 // we will use a middleware to do this
 
 router.post("/send/:id", protectRoute, sendMessage);
+
+// GET /api/messages/:id
+
+router.get("/:id", protectRoute, getMessages);
 
 export default router;
