@@ -3,6 +3,10 @@ import { sendMessage } from "../controllers/messageController.js";
 
 const router = express.Router();
 
-router.post("/send/:id", sendMessage);
+// Before running sendMessage
+// we need to check if the user is authenticated
+// we will use a middleware to do this
+
+router.post("/send/:id", protectRoute, sendMessage);
 
 export default router;
