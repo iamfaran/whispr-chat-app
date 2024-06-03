@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import connectDB from "./db/connectDB.js";
 import cookieParser from "cookie-parser";
 
@@ -27,6 +28,9 @@ app.use("/api/auth", authRoutes);
 
 // add message routes
 app.use("/api/messages", messageRoutes);
+
+// Get User Routes
+app.use("/api/users", userRoutes);
 
 app.listen(port, () => {
   // connect to database
