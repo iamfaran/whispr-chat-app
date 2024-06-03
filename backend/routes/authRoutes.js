@@ -7,7 +7,7 @@ const router = Router();
 router.get("/login", login);
 // REGISTER ROUTE
 
-router.get("/register", register);
+router.post("/register", register);
 
 // LOGOUT ROUTE
 
