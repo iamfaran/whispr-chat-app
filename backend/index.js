@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import connectDB from "./db/connectDB.js";
+import cookieParser from "cookie-parser";
 
 // load env variables from .env file
 dotenv.config();
@@ -11,6 +12,9 @@ const app = express();
 
 // parse json request body
 app.use(express.json());
+
+// parse cookies
+app.use(cookieParser());
 
 const port = process.env.PORT || 3000;
 
