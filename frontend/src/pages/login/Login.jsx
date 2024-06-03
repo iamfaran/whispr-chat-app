@@ -1,12 +1,15 @@
 const Login = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
-      <div className="w-full p-6 rounded-lg shadow-md bg-white">
+    <div
+      className="card w-96 bg-primary-content
+    "
+    >
+      <div className="card-body">
+        {" "}
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           Login
-          <span className="text-blue-500"> Whisper</span>
+          <span className="text-primary"> Whisper</span>
         </h1>
-
         <form>
           <div>
             <label className="label p-2">
@@ -15,7 +18,7 @@ const Login = () => {
             <input
               type="text"
               placeholder="Enter username"
-              className="w-full input input-bordered h-10 bg-[#F5F5F5]"
+              className="w-full input input-bordered h-10"
             />
           </div>
 
@@ -37,7 +40,9 @@ const Login = () => {
           </a>
 
           <div>
-            <button className="btn btn-block btn-sm mt-2">Login</button>
+            <button className="btn btn-block btn-sm mt-2 bg-secondary">
+              Login
+            </button>
           </div>
         </form>
       </div>
