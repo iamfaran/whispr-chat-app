@@ -1,4 +1,4 @@
-const GenderCheckbox = () => {
+const RadioButton = () => {
   return (
     <div className="flex">
       <div className="form-control">
@@ -26,4 +26,4 @@ const GenderCheckbox = () => {
     </div>
   );
 };
-export default GenderCheckbox;
+export default RadioButton;

@@ -1,4 +1,4 @@
-import GenderCheckbox from "../../components/GenderCheckbox";
+import GenderCheckbox from "../../components/RadioButton";
 
 const Register = () => {
   return (
