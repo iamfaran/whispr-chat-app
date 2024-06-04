@@ -9,7 +9,9 @@ const Message = () => {
           />{" "}
         </div>
       </div>
-      <div className={`chat-bubble text-white pb-2`}>Dummy Message :(</div>
+      <div className={`chat-bubble pb-2 chat-bubble-info`}>
+        Dummy Message :(
+      </div>
       <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">
         17:30
       </div>
