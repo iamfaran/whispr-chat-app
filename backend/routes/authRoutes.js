@@ -4,7 +4,7 @@ import { register, login, logout } from "../controllers/authControllers.js";
 const router = Router();
 
 // LOGIN ROUTE
-router.get("/login", login);
+router.post("/login", login);
 // REGISTER ROUTE
 
 router.post("/register", register);

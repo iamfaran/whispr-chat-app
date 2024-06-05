@@ -1,8 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext";
 
 const useSignup = () => {
   // TODO: fix error handling
+
+  const { login } = useAuth();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   console.log("errror", error);
@@ -10,6 +13,7 @@ const useSignup = () => {
     try {
       setLoading(true);
       const response = await axios.post("/api/auth/register", data);
+      login(response.data);
       setLoading(false);
       return response.data;
     } catch (error) {
