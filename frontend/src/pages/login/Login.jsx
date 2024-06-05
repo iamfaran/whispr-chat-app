@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { useNavigate, Navigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 
@@ -9,8 +8,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { login, user } = useAuth();
-  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const onSubmit = async (data) => {
     try {
@@ -20,18 +18,13 @@ const Login = () => {
       // Assuming your API returns user data on successful login
       if (response.status === 200) {
         login(response.data); // Update user context on successful login
-        navigate("/"); // Redirect to home page
+        // Redirect to home page
       }
     } catch (error) {
       // Handle login errors (e.g., invalid credentials)
       console.error("Login error:", error);
     }
   };
-
-  // If user is already logged in, redirect to home
-  if (user) {
-    return <Navigate to="/" replace />;
-  }
 
   return (
     <div className="card w-96 bg-primary-content">
