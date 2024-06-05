@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import useSignup from "../../hooks/useSignup";
 
 const Register = () => {
   const {
@@ -7,10 +8,13 @@ const Register = () => {
     formState: { errors },
     watch,
   } = useForm();
+  const { signup } = useSignup();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // Handle form submission here (e.g., send data to your API)
     console.log(data);
+    const response = await signup(data);
+    console.log(response);
   };
 
   return (

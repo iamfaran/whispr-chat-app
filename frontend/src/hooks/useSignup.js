@@ -1,0 +1,24 @@
+import { useState } from "react";
+import axios from "axios";
+
+const useSignup = () => {
+  // TODO: fix error handling
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  console.log("errror", error);
+  const signup = async (data) => {
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/auth/register", data);
+      setLoading(false);
+      return response.data;
+    } catch (error) {
+      setLoading(false);
+      setError(error.response.data.message);
+    }
+  };
+
+  return { error, loading, signup };
+};
+
+export default useSignup;
