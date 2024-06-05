@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import jwt from "jsonwebtoken";
+import { jwtDecode } from "jwt-decode";
 
 // Create the AuthContext
 const AuthContext = createContext({
@@ -16,7 +16,7 @@ function AuthProvider({ children }) {
     // Check for existing token in local storage and decode it
     const token = localStorage.getItem("token");
     if (token) {
-      const decodedToken = jwt.decode(token);
+      const decodedToken = jwtDecode(token);
       if (decodedToken.exp * 1000 > Date.now()) {
         setUser(decodedToken);
       } else {
@@ -27,7 +27,7 @@ function AuthProvider({ children }) {
 
   const login = (token) => {
     localStorage.setItem("token", token);
-    setUser(jwt.decode(token));
+    setUser(jwtDecode(token));
   };
 
   const logout = () => {
