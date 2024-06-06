@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
@@ -68,12 +69,12 @@ const Login = () => {
             )}
           </div>
 
-          <a
-            href="#"
-            className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block"
+          <Link
+            to="/register"
+            className="text-sm  hover:underline hover:text-blue-600 mt-2 inline-block"
           >
             {"Don't"} have an account?
-          </a>
+          </Link>
 
           <button
             className="btn btn-block btn-sm mt-2 bg-secondary"
