@@ -24,9 +24,21 @@ function AuthProvider({ children }) {
     setUser(userInfo);
   };
 
-  const logout = () => {
-    localStorage.removeItem("userInfo");
-    setUser(null);
+  const logout = async () => {
+    try {
+      const res = await fetch("/api/auth/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.ok) {
+        localStorage.removeItem("userInfo");
+        setUser(null);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const value = { user, login, logout };
