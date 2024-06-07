@@ -14,7 +14,7 @@ const useGetConversations = () => {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await axios.get("/api/conversations");
+        const res = await axios.get("/api/users");
         setConversations(res.data);
       } catch (error) {
         console.error("Error in useGetConversations: ", error.message);
