@@ -1,8 +1,25 @@
 import PropTypes from "prop-types";
+import { useConversationStore } from "../../zustand/useConversationStore";
 const Conversation = ({ conversation, lastIdx }) => {
+  console.log("RENDER CONVERSATIOn");
+  const { selectedConversation, setSelectedConversation } =
+    useConversationStore((state) => ({
+      selectedConversation: state.selectedConversation,
+      setSelectedConversation: state.setSelectedConversation,
+    }));
+
+  const isSelected = selectedConversation?._id === conversation._id;
+
   return (
     <>
-      <div className="flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer">
+      <div
+        onClick={() => {
+          setSelectedConversation(conversation);
+        }}
+        className={`flex gap-2
+        ${isSelected ? "bg-sky-500" : "hover:bg-sky-500"}
+        items-center rounded p-2 py-1 cursor-pointer`}
+      >
         <div className="avatar online">
           <div className="w-12 rounded-full">
             <img
