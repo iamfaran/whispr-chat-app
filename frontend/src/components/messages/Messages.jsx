@@ -5,18 +5,13 @@ const Messages = () => {
   console.log("Messages: ", messages, "Loading: ", loading);
   return (
     <div className="px-4 flex-1 overflow-auto">
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
+      {loading ? (
+        <div className="loading loading-spinner"></div>
+      ) : (
+        messages.map((message) => (
+          <Message key={message._id} message={message} />
+        ))
+      )}
     </div>
   );
 };

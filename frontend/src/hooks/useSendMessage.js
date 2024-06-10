@@ -18,7 +18,7 @@ const useSendMessage = () => {
         message,
       });
       // Update the messages in the store
-      console.log(response.data);
+      setMessages([...messages, response.data]);
     } catch (error) {
       console.error(error);
     } finally {

@@ -1,17 +1,26 @@
-const Message = () => {
+import PropTypes from "prop-types";
+import { useAuth } from "../../context/AuthContext";
+import { useConversationStore } from "../../zustand/useConversationStore";
+const Message = ({ message }) => {
+  const { selectedConversation } = useConversationStore();
+  console.log("selectedConversation ", selectedConversation);
+  const { user } = useAuth();
+  console.log("user ", user);
+  console.log("message ", message);
+
+  const isMe = message.senderId === user._id;
+  const chatBubble = isMe ? "chat-end" : "chat-start";
+  const pic = isMe ? user.profilePic : selectedConversation?.profilePic || "";
+  const chatColor = isMe ? "chat-bubble-info" : "chat-bubble-primary";
+
   return (
-    <div className={`chat chat-end`}>
+    <div className={`chat ${chatBubble}`}>
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
-          <img
-            src="https://cdn0.iconfinder.com/data/icons/communication-line-10/24/account_profile_user_contact_person_avatar_placeholder-512.png"
-            alt="user avatar"
-          />{" "}
+          <img src={pic} alt="user avatar" />{" "}
         </div>
       </div>
-      <div className={`chat-bubble pb-2 chat-bubble-info`}>
-        Dummy Message :(
-      </div>
+      <div className={`chat-bubble pb-2 ${chatColor}`}>{message.message}</div>
       <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">
         17:30
       </div>
@@ -20,3 +29,7 @@ const Message = () => {
 };
 
 export default Message;
+
+Message.propTypes = {
+  message: PropTypes.object.isRequired,
+};
