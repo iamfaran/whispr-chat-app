@@ -3,10 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useConversationStore } from "../../zustand/useConversationStore";
 const Message = ({ message }) => {
   const { selectedConversation } = useConversationStore();
-  console.log("selectedConversation ", selectedConversation);
   const { user } = useAuth();
-  console.log("user ", user);
-  console.log("message ", message);
 
   const isMe = message.senderId === user._id;
   const chatBubble = isMe ? "chat-end" : "chat-start";

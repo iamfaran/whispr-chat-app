@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { useConversationStore } from "../../zustand/useConversationStore";
 const Conversation = ({ conversation, lastIdx }) => {
-  console.log("RENDER CONVERSATIOn");
   const { selectedConversation, setSelectedConversation } =
     useConversationStore((state) => ({
       selectedConversation: state.selectedConversation,

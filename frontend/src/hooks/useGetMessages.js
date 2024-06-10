@@ -8,7 +8,6 @@ const useGetMessages = () => {
     useConversationStore();
 
   useEffect(() => {
-    console.log("use effect ran");
     const id = selectedConversation?._id;
     const getMessages = async () => {
       try {

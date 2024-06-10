@@ -8,7 +8,7 @@ const useSignup = () => {
   const { login } = useAuth();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  console.log("errror", error);
+
   const signup = async (data) => {
     try {
       setLoading(true);

@@ -3,7 +3,6 @@ import { useConversationStore } from "../zustand/useConversationStore";
 import axios from "axios";
 
 const useSendMessage = () => {
-  console.log("Rendering useSendMessage...");
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, selectedConversation } =
     useConversationStore();
