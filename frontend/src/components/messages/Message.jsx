@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { useAuth } from "../../context/AuthContext";
 import { useConversationStore } from "../../zustand/useConversationStore";
+import convertTime from "../../utils/convertTime";
+
 const Message = ({ message }) => {
   const { selectedConversation } = useConversationStore();
   const { user } = useAuth();
@@ -9,7 +11,7 @@ const Message = ({ message }) => {
   const chatBubble = isMe ? "chat-end" : "chat-start";
   const pic = isMe ? user.profilePic : selectedConversation?.profilePic || "";
   const chatColor = isMe ? "chat-bubble-info" : "chat-bubble-primary";
-
+  console.log(convertTime(message.createdAt));
   return (
     <div className={`chat ${chatBubble}`}>
       <div className="chat-image avatar">
@@ -19,7 +21,7 @@ const Message = ({ message }) => {
       </div>
       <div className={`chat-bubble pb-2 ${chatColor}`}>{message.message}</div>
       <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">
-        17:30
+        <div>{convertTime(message.createdAt)}</div>
       </div>
     </div>
   );
