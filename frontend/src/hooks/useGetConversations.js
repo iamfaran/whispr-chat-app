@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useConversationStore } from "../zustand/useConversationStore";
 
 const useGetConversations = () => {
-  // get user conversations
-  // set the value on useEffect
-  const [conversations, setConversations] = useState([]);
   // loading
   const [loading, setLoading] = useState(true);
+  const { conversations, setConversations } = useConversationStore();
 
   // error
   const [error, setError] = useState(false);

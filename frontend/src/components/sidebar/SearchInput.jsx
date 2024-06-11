@@ -1,12 +1,10 @@
 import { IoSearchSharp } from "react-icons/io5";
 import { useForm } from "react-hook-form"; // Import useForm
 import { useConversationStore } from "../../zustand/useConversationStore";
-import useGetConversations from "../../hooks/useGetConversations";
 
 const SearchInput = () => {
   const { register, handleSubmit } = useForm();
-  const { conversations } = useGetConversations();
-  const { setSelectedConversation } = useConversationStore();
+  const { conversations, setSelectedConversation } = useConversationStore();
 
   const onSubmit = (data) => {
     const searchQuery = data.search; // Access the search query from data

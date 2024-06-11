@@ -11,4 +11,8 @@ export const useConversationStore = create((set) => ({
   setMessages: (messages) => {
     set({ messages });
   },
+  conversations: [],
+  setConversations: (conversations) => {
+    set({ conversations });
+  },
 }));
