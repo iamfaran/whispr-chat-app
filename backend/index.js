@@ -5,11 +5,10 @@ import messageRoutes from "./routes/messageRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import connectDB from "./db/connectDB.js";
 import cookieParser from "cookie-parser";
+import { app, server } from "./scoket/socket.js";
 
 // load env variables from .env file
 dotenv.config();
-
-const app = express();
 
 // parse json request body
 app.use(express.json());
@@ -32,7 +31,7 @@ app.use("/api/messages", messageRoutes);
 // Get User Routes
 app.use("/api/users", userRoutes);
 
-app.listen(port, () => {
+server.listen(port, () => {
   // connect to database
   connectDB();
   console.log(`Server is running on port ${port}`);
