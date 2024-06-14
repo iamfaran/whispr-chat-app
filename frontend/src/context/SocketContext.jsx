@@ -14,19 +14,28 @@ const useSocketContext = () => {
 const SocketProvider = ({ children }) => {
   const [onlineUsers, setOnlineUsers] = useState([]);
   const { user } = useAuth();
-
+  const [socket, setSocket] = useState(null);
+  //TODO: refactor use user.id as the useEffect dependency
   useEffect(() => {
     if (user) {
-      const socket = io("http://localhost:5000");
+      const newSocket = io("http://localhost:5000");
+
+      setSocket(newSocket);
+      newSocket.emit("userConnected", { userId: user._id });
+
+      newSocket.on("onlineUsers", (users) => {
+        setOnlineUsers(users);
+      });
 
       return () => {
-        socket.close();
+        console.log("disconnecting socket");
+        newSocket.close();
       };
     }
-  }, [user?._id]);
+  }, [user]);
 
   return (
-    <SocketContext.Provider value={onlineUsers}>
+    <SocketContext.Provider value={{ onlineUsers, socket }}>
       {children}
     </SocketContext.Provider>
   );

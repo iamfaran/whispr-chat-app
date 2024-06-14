@@ -12,12 +12,25 @@ const io = new Server(server, {
   },
 });
 
+let onlineUsers = {};
+
 io.on("connection", (socket) => {
-  console.log("a user connected", socket.id);
+  // console.log("a user connected", socket.id);
+
+  socket.on("userConnected", ({ userId }) => {
+    console.log("user connected", userId);
+    onlineUsers[userId] = socket.id;
+
+    io.emit("onlineUsers", Object.keys(onlineUsers));
+  });
 
   // socket.on() is used to listen for events. Can be used for both server and client.
   socket.on("disconnect", () => {
-    console.log("user disconnected");
+    const userId = Object.keys(onlineUsers).find(
+      (key) => onlineUsers[key] === socket.id
+    );
+    delete onlineUsers[userId];
+    io.emit("onlineUsers", Object.keys(onlineUsers));
   });
 });
 
