@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import { useConversationStore } from "../../zustand/useConversationStore";
+import { useSocketContext } from "../../context/SocketContext";
 const Conversation = ({ conversation, lastIdx }) => {
+  const { onlineUsers } = useSocketContext();
+  console.log(onlineUsers);
   const { selectedConversation, setSelectedConversation } =
     useConversationStore((state) => ({
       selectedConversation: state.selectedConversation,
@@ -8,6 +11,9 @@ const Conversation = ({ conversation, lastIdx }) => {
     }));
 
   const isSelected = selectedConversation?._id === conversation._id;
+  const isOnline = onlineUsers.includes(conversation._id)
+    ? "online"
+    : "offline";
 
   return (
     <>
@@ -19,7 +25,7 @@ const Conversation = ({ conversation, lastIdx }) => {
         ${isSelected ? "bg-sky-500" : "hover:bg-sky-500"}
         items-center rounded p-2 py-1 cursor-pointer`}
       >
-        <div className="avatar online">
+        <div className={`avatar ${isOnline}`}>
           <div className="w-12 rounded-full">
             <img
               src={conversation.profilePic || "https://i.pravatar.cc/300"}
