@@ -1,9 +1,10 @@
 import Message from "./Message";
 import useGetMessages from "../../hooks/useGetMessages";
 import { useEffect, useRef } from "react";
+import useListenMessages from "../../hooks/useListenMessages";
 const Messages = () => {
   const chatMessagesRef = useRef(null);
-
+  useListenMessages();
   const { messages, loading } = useGetMessages();
   console.log("Messages: ", messages, "Loading: ", loading);
 

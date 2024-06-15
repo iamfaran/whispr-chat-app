@@ -1,5 +1,6 @@
 import Conversation from "../models/Conversation.js";
 import Message from "../models/Message.js";
+import { getReceiverSocketId, io } from "../scoket/socket.js";
 
 export const sendMessage = async (req, res) => {
   // TODO: understand why req.params is a reciverId
@@ -41,6 +42,13 @@ export const sendMessage = async (req, res) => {
 
     // use Promise.all for parallel execution
     await Promise.all([newMessage.save(), conversation.save()]);
+
+    // ADD socket.io code here
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      // io.to() is used to send messages to a specific client
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
     res.status(201).json(newMessage);
   } catch (error) {
