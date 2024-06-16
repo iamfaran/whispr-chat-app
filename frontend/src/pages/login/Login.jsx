@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const {
@@ -23,7 +24,9 @@ const Login = () => {
       }
     } catch (error) {
       // Handle login errors (e.g., invalid credentials)
-      console.error("Login error:", error);
+      const errorMessage =
+        error.response?.data?.error || "An error occurred in logging in";
+      toast.error(errorMessage);
     }
   };
 
@@ -31,7 +34,7 @@ const Login = () => {
     <div className="card w-96 bg-primary-content">
       <div className="card-body">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
-          Login <span className="text-primary">Whisper</span>
+          Login <span className="text-primary">Whispr</span>
         </h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>

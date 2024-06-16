@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <SocketProvider>
         <App />
-        <ToastContainer />
+        <ToastContainer autoClose={2000} />
       </SocketProvider>
     </BrowserRouter>
   </AuthProvider>
