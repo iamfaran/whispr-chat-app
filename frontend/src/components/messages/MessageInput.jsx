@@ -25,8 +25,11 @@ const MessageInput = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="px-4 my-3">
-      <div className="w-full relative">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="fixed bottom-0 left-[400px] right-0 border border-orange-400"
+    >
+      <div>
         <input
           type="text"
           {...register("message", { required: "Please enter a message" })}

@@ -17,7 +17,10 @@ const Messages = () => {
     }
   }, [messages, loading]);
   return (
-    <div ref={chatMessagesRef}>
+    <div
+      className="overflow-y-scroll h-[calc(100%-100px)] p-4"
+      ref={chatMessagesRef}
+    >
       {loading ? (
         <div className="loading loading-spinner"></div>
       ) : (
