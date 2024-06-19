@@ -15,8 +15,14 @@ const MessageContainer = () => {
     };
   }, [setSelectedConversation]);
 
+  // if convo is selected make convo overlay on top of sidebar on mobile / Make convo full screen
+
+  const isMobile = selectedConversation ? "left-0" : "left-full";
+
   return (
-    <div className="fixed h-full left-[300px] right-0 top-0 hidden border border-blue-500 sm:block">
+    <div
+      className={`fixed h-full ${isMobile} bg-black sm:left-[300px] right-0 top-0 border border-blue-500 sm:block`}
+    >
       {!isChatSelected ? (
         <NoChat />
       ) : (
