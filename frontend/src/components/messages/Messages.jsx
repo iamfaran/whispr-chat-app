@@ -17,7 +17,7 @@ const Messages = () => {
     }
   }, [messages, loading]);
   return (
-    <div className="px-4 flex-1 overflow-auto" ref={chatMessagesRef}>
+    <div ref={chatMessagesRef}>
       {loading ? (
         <div className="loading loading-spinner"></div>
       ) : (

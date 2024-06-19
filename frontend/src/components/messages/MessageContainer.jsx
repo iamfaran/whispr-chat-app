@@ -16,13 +16,13 @@ const MessageContainer = () => {
   }, [setSelectedConversation]);
 
   return (
-    <div className="fixed h-full left-[400px] right-0 top-0 border border-blue-500">
+    <div className="fixed h-full left-[400px] right-0 top-0 border border-blue-500 overflow-y-auto">
       {!isChatSelected ? (
         <NoChat />
       ) : (
         <>
           {/* Header */}
-          <div className="bg-slate-500 px-4 py-2 mb-2">
+          <div className="bg-slate-500 px-4 py-2 mb-4 sticky z-10 top-0">
             <span className="label-text">To:</span>{" "}
             <span className="text-gray-900 font-bold">
               {selectedConversation.fullName}
