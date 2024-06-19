@@ -16,7 +16,7 @@ const MessageContainer = () => {
   }, [setSelectedConversation]);
 
   return (
-    <div className="fixed h-full left-[400px] right-0 top-0 border border-blue-500">
+    <div className="fixed h-full left-[300px] right-0 top-0 hidden border border-blue-500 sm:block">
       {!isChatSelected ? (
         <NoChat />
       ) : (
