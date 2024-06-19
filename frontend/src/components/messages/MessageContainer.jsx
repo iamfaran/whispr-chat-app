@@ -3,6 +3,7 @@ import MessageInput from "./MessageInput";
 import NoChat from "./NoChat";
 import { useConversationStore } from "../../zustand/useConversationStore";
 import { useEffect } from "react";
+import { MdOutlineArrowBackIos } from "react-icons/md";
 const MessageContainer = () => {
   const { selectedConversation, setSelectedConversation } =
     useConversationStore();
@@ -29,10 +30,20 @@ const MessageContainer = () => {
         <>
           {/* Header */}
           <div className="bg-slate-500 p-4 mb-4 sticky z-10 top-0">
-            <span className="label-text">To:</span>{" "}
-            <span className="text-gray-900 font-bold">
-              {selectedConversation.fullName}
-            </span>
+            <div className="flex gap-4">
+              <div className=" block sm:hidden">
+                <MdOutlineArrowBackIos
+                  className=" text-2xl cursor-pointer text-primary font-bold"
+                  onClick={() => setSelectedConversation(null)}
+                />
+              </div>
+              <div>
+                <span className="label-text">To:</span>{" "}
+                <span className="text-gray-900 font-bold">
+                  {selectedConversation.fullName}
+                </span>
+              </div>
+            </div>
           </div>
 
           <Messages />
