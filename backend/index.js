@@ -1,3 +1,5 @@
+import path from "path";
+import { fileURLToPath } from "url";
 import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
@@ -18,6 +20,11 @@ app.use(cookieParser());
 
 const port = process.env.PORT || 3000;
 
+// set up static folder
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
@@ -30,6 +37,11 @@ app.use("/api/messages", messageRoutes);
 
 // Get User Routes
 app.use("/api/users", userRoutes);
+
+// catch all other routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
 
 server.listen(port, () => {
   // connect to database
