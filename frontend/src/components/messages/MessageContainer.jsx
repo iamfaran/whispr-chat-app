@@ -22,7 +22,7 @@ const MessageContainer = () => {
 
   return (
     <div
-      className={`fixed h-full ${isMobile} bg-black sm:left-[300px] transition-[left] right-0 top-0 border border-blue-500 sm:block`}
+      className={`fixed h-full ${isMobile} bg-base-300 sm:left-[300px] transition-[left] right-0 top-0 sm:block`}
     >
       {!isChatSelected ? (
         <NoChat />
