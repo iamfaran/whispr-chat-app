@@ -1,5 +1,4 @@
 import path from "path";
-
 import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
@@ -23,6 +22,7 @@ app.use(cookieParser());
 const port = process.env.PORT || 5000;
 
 // set up static folder
+
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
 app.get("/", (req, res) => {
