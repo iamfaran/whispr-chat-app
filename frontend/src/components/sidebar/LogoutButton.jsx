@@ -8,7 +8,7 @@ const LogoutButton = () => {
     logout();
   };
   return (
-    <div className="mt-auto">
+    <div className="mt-4 text-error cursor-pointer">
       <BiLogOut onClick={handleLogout} className="w-6 h-6" />
     </div>
   );
