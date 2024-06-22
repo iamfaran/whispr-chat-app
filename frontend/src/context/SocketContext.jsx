@@ -23,6 +23,7 @@ const SocketProvider = ({ children }) => {
       const socketUrl = isDevelopment
         ? "http://localhost:5000"
         : "https://whispr-chat-app.onrender.com/";
+      console.log("socketUrl", socketUrl);
       const newSocket = io(socketUrl);
 
       setSocket(newSocket);
