@@ -16,11 +16,11 @@ const SearchInput = () => {
   };
 
   return (
-    <form className="flex items-center gap-2" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex gap-2 items-center" onSubmit={handleSubmit(onSubmit)}>
       <input
         type="text"
         placeholder="Search…"
-        className="input input-bordered rounded-full"
+        className="input input-bordered rounded-full grow"
         {...register("search")} // Register the input
       />
       <button type="submit" className="btn btn-circle bg-sky-500 text-white">
