@@ -3,7 +3,6 @@ import { IoSend } from "react-icons/io5";
 import useSendMessage from "../../hooks/useSendMessage";
 
 const MessageInput = () => {
-  console.log("Rendering MessageInput...");
   const {
     register,
     handleSubmit,

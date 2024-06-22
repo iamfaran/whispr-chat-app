@@ -3,7 +3,6 @@ import { useConversationStore } from "../../zustand/useConversationStore";
 import { useSocketContext } from "../../context/SocketContext";
 const Conversation = ({ conversation, lastIdx }) => {
   const { onlineUsers } = useSocketContext();
-  console.log(onlineUsers);
   const { selectedConversation, setSelectedConversation } =
     useConversationStore((state) => ({
       selectedConversation: state.selectedConversation,

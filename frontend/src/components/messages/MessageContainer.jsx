@@ -11,7 +11,6 @@ const MessageContainer = () => {
 
   useEffect(() => {
     return () => {
-      console.log("unmounting");
       setSelectedConversation(null);
     };
   }, [setSelectedConversation]);

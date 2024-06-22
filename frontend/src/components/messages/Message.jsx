@@ -11,7 +11,7 @@ const Message = ({ message }) => {
   const chatBubble = isMe ? "chat-end" : "chat-start";
   const pic = isMe ? user.profilePic : selectedConversation?.profilePic || "";
   const chatColor = isMe ? "chat-bubble-info" : "chat-bubble-primary";
-  console.log(convertTime(message.createdAt));
+
   return (
     <div className={`chat ${chatBubble}`}>
       <div className="chat-image avatar">

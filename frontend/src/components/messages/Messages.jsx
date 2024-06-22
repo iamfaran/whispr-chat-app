@@ -6,7 +6,6 @@ const Messages = () => {
   const chatMessagesRef = useRef(null);
   useListenMessages();
   const { messages, loading } = useGetMessages();
-  console.log("Messages: ", messages, "Loading: ", loading);
 
   useEffect(() => {
     if (chatMessagesRef.current && !loading) {

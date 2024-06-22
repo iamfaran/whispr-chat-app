@@ -14,7 +14,6 @@ const Register = () => {
   const onSubmit = async (data) => {
     // Handle form submission here (e.g., send data to your API)
     const response = await signup(data);
-    console.log(response);
   };
 
   return (
