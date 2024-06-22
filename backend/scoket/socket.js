@@ -5,9 +5,13 @@ import express from "express";
 
 const app = express();
 const server = http.createServer(app);
+const isDevelopment = process.env.NODE_ENV === "development";
+const orgin = isDevelopment
+  ? "http://localhost:3000"
+  : "https://whispr-chat-app.onrender.com/";
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: orgin,
     methods: ["GET", "POST"],
   },
 });

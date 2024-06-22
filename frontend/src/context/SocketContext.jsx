@@ -15,10 +15,15 @@ const SocketProvider = ({ children }) => {
   const [onlineUsers, setOnlineUsers] = useState([]);
   const { user } = useAuth();
   const [socket, setSocket] = useState(null);
+
   //TODO: refactor use user.id as the useEffect dependency
   useEffect(() => {
     if (user) {
-      const newSocket = io("http://localhost:5000");
+      const isDevelopment = process.env.NODE_ENV === "development";
+      const socketUrl = isDevelopment
+        ? "http://localhost:5000"
+        : "https://whispr-chat-app.onrender.com/";
+      const newSocket = io(socketUrl);
 
       setSocket(newSocket);
       newSocket.emit("userConnected", { userId: user._id });
