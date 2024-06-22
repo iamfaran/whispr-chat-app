@@ -29,7 +29,7 @@ const MessageContainer = () => {
       ) : (
         <>
           {/* Header */}
-          <div className="bg-black p-4 mb-4 sticky z-10 top-0">
+          <div className="bg-slate-100 p-4 mb-4 sticky z-10 top-0">
             <div className="flex gap-4">
               <div className=" block sm:hidden">
                 <MdOutlineArrowBackIos
