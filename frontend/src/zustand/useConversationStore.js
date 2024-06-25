@@ -15,4 +15,9 @@ export const useConversationStore = create((set) => ({
   setConversations: (conversations) => {
     set({ conversations });
   },
+
+  isUserTyping: false,
+  setIsUserTyping: (isUserTyping) => {
+    set({ isUserTyping });
+  },
 }));

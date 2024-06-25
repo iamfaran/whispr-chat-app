@@ -49,7 +49,7 @@ io.on("connection", (socket) => {
     const receiverSocketId = getReceiverSocketId(recipientId);
 
     if (receiverSocketId) {
-      io.to(receiverSocketId).emit("startTyping", { senderId });
+      io.to(receiverSocketId).emit("userTyping", { senderId });
     }
   });
 
@@ -58,7 +58,7 @@ io.on("connection", (socket) => {
     const receiverSocketId = getReceiverSocketId(recipientId);
 
     if (receiverSocketId) {
-      io.to(receiverSocketId).emit("stopTyping", { senderId });
+      io.to(receiverSocketId).emit("userTypingStop", { senderId });
     }
   });
 });
