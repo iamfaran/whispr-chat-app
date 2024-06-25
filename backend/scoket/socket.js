@@ -43,6 +43,24 @@ io.on("connection", (socket) => {
     delete onlineUsers[userId];
     io.emit("onlineUsers", Object.keys(onlineUsers));
   });
+
+  // socket.on() for startTyping event
+  socket.on("startTyping", ({ recipientId, senderId }) => {
+    const receiverSocketId = getReceiverSocketId(recipientId);
+
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("startTyping", { senderId });
+    }
+  });
+
+  // socket.on() for stopTyping event
+  socket.on("stopTyping", ({ recipientId, senderId }) => {
+    const receiverSocketId = getReceiverSocketId(recipientId);
+
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("stopTyping", { senderId });
+    }
+  });
 });
 
 export { io, app, server };

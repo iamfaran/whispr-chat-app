@@ -17,7 +17,6 @@ const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
 
   const startTyping = (recipientId) => {
-    console.log("start typing", recipientId);
     // Emit an event to the server
     // will be called when the user starts typing
     socket.emit("startTyping", { recipientId, senderId: user._id });
@@ -26,7 +25,7 @@ const SocketProvider = ({ children }) => {
   const stopTyping = (recipientId) => {
     // Emit an event to the server
     // will be called when the user stops typing
-    console.log("stop typing", recipientId);
+
     socket.emit("stopTyping", { recipientId, senderId: user._id });
   };
 
