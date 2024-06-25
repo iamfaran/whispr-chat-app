@@ -16,6 +16,18 @@ const SocketProvider = ({ children }) => {
   const { user } = useAuth();
   const [socket, setSocket] = useState(null);
 
+  const startTyping = (recipientId) => {
+    // Emit an event to the server
+    // will be called when the user starts typing
+    socket.emit("startTyping", { recipientId, senderId: user._id });
+  };
+
+  const stopTyping = (recipientId) => {
+    // Emit an event to the server
+    // will be called when the user stops typing
+    socket.emit("stopTyping", { recipientId, senderId: user._id });
+  };
+
   //TODO: refactor use user.id as the useEffect dependency
   useEffect(() => {
     if (user) {

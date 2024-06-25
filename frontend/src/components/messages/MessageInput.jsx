@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { IoSend } from "react-icons/io5";
 import useSendMessage from "../../hooks/useSendMessage";
+import { useConversationStore } from "../../zustand/useConversationStore";
+import { useAuth } from "../../context/AuthContext";
 
 const MessageInput = () => {
   const {
@@ -14,6 +16,12 @@ const MessageInput = () => {
     },
   });
 
+  const { selectedConversation } = useConversationStore();
+  const { user } = useAuth();
+
+  console.log(selectedConversation);
+  console.log(user);
+
   const { sendMessage, loading } = useSendMessage();
 
   const onSubmit = async (data) => {
@@ -23,12 +31,20 @@ const MessageInput = () => {
     reset(); // Clear the input after sending
   };
 
+  const handleInptChange = (e) => {
+    // Handle
+    console.log(e.target.value);
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="p-4 bg-base-200">
       <div className="relative">
         <input
           type="text"
-          {...register("message", { required: "Please enter a message" })}
+          {...register("message", {
+            required: "Please enter a message",
+            onChange: handleInptChange,
+          })}
           className={`border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 text-white ${
             errors.message ? "border-red-500" : ""
           }`}
