@@ -2,7 +2,8 @@ import { useForm } from "react-hook-form";
 import { IoSend } from "react-icons/io5";
 import useSendMessage from "../../hooks/useSendMessage";
 import { useConversationStore } from "../../zustand/useConversationStore";
-import { useAuth } from "../../context/AuthContext";
+import { useSocketContext } from "../../context/SocketContext";
+import { useRef } from "react";
 
 const MessageInput = () => {
   const {
@@ -17,12 +18,13 @@ const MessageInput = () => {
   });
 
   const { selectedConversation } = useConversationStore();
-  const { user } = useAuth();
+  const { startTyping, stopTyping } = useSocketContext();
 
-  console.log(selectedConversation);
-  console.log(user);
+  const cancelTimeout = useRef(null);
 
   const { sendMessage, loading } = useSendMessage();
+
+  const recipientId = selectedConversation._id;
 
   const onSubmit = async (data) => {
     // Handle message submission (e.g., send to API)
@@ -31,9 +33,20 @@ const MessageInput = () => {
     reset(); // Clear the input after sending
   };
 
-  const handleInptChange = (e) => {
+  const handleTyping = (e) => {
     // Handle
-    console.log(e.target.value);
+    clearTimeout(cancelTimeout.current);
+
+    if (e.target.value) {
+      startTyping(recipientId);
+
+      cancelTimeout.current = setTimeout(() => {
+        stopTyping(recipientId);
+      }, 2000);
+      return;
+    }
+    // stop typing
+    stopTyping(recipientId);
   };
 
   return (
@@ -43,7 +56,7 @@ const MessageInput = () => {
           type="text"
           {...register("message", {
             required: "Please enter a message",
-            onChange: handleInptChange,
+            onChange: handleTyping,
           })}
           className={`border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 text-white ${
             errors.message ? "border-red-500" : ""
