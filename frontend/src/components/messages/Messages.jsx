@@ -27,6 +27,9 @@ const Messages = () => {
           <Message key={message._id} message={message} />
         ))
       )}
+      <div>
+        Typing <span className="animate-ping">...</span>
+      </div>
     </div>
   );
 };

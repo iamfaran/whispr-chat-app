@@ -24,10 +24,7 @@ const MessageInput = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="fixed bottom-0 left-0 sm:left-[300px] right-0  p-4 bg-base-200"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="p-4 bg-base-200">
       <div className="relative">
         <input
           type="text"
