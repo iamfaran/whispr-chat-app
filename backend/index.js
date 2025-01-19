@@ -6,7 +6,7 @@ import messageRoutes from "./routes/messageRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import connectDB from "./db/connectDB.js";
 import cookieParser from "cookie-parser";
-import { app, server } from "./scoket/socket.js";
+import { app, server } from "./socket/socket.js";
 
 // load env variables from .env file
 dotenv.config();
